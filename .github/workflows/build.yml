@@ -57,7 +57,7 @@ jobs:
                   echo "GIT_HASH=$GIT_HASH" >> $GITHUB_OUTPUT
 
                   # 组合文件名
-                  FILENAME="DPlayer-$VERSION#$GIT_HASH.zip"
+                  FILENAME="DPlayer-$VERSION#$GIT_HASH"
                   echo "FILENAME=$FILENAME" >> $GITHUB_OUTPUT
 
             - name: Create ZIP archive
@@ -69,4 +69,4 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: ${{ steps.vars.outputs.FILENAME }}
-                  path: ${{ steps.vars.outputs.FILENAME }}
+                  path: ${{ steps.vars.outputs.FILENAME }}.zip
