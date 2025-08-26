@@ -63,7 +63,7 @@ jobs:
             - name: Create ZIP archive
               run: |
                   cd dist
-                  zip -r ../${{ steps.vars.outputs.FILENAME }} .
+                  zip -r ../${{ steps.vars.outputs.FILENAME }}.zip .
 
             - name: Upload artifact
               uses: actions/upload-artifact@v4
