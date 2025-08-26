@@ -60,6 +60,10 @@ jobs:
                   FILENAME="DPlayer-$VERSION#$GIT_HASH"
                   echo "FILENAME=$FILENAME" >> $GITHUB_OUTPUT
 
+            - name: Create ZIP archive
+              run: |
+                  cd dist
+
             - name: Upload artifact
               uses: actions/upload-artifact@v4
               with:
