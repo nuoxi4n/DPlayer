@@ -1,6 +1,6 @@
 {
     "name": "dplayer",
-    "version": "1.27.1",
+    "version": "1.27.2",
     "description": "Wow, such a lovely HTML5 danmaku video player",
     "main": "dist/DPlayer.min.js",
     "scripts": {
@@ -20,7 +20,7 @@
         "dist"
     ],
     "repository": {
-        "url": "git+https://github.com/DIYgod/DPlayer.git",
+        "url": "git+https://github.com/nuoxi4n/DPlayer.git",
         "type": "git"
     },
     "keywords": [
@@ -32,9 +32,9 @@
     "author": "DIYgod",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/DIYgod/DPlayer/issues"
+        "url": "https://github.com/nuoxi4n/DPlayer/issues"
     },
-    "homepage": "https://github.com/DIYgod/DPlayer#readme",
+    "homepage": "https://github.com/nuoxi4n/DPlayer#readme",
     "devDependencies": {
         "@babel/core": "^7.22.10",
         "@babel/preset-env": "^7.22.10",

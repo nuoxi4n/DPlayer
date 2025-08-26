@@ -25,6 +25,7 @@ module.exports = {
     },
 
     resolve: {
+        preferRelative: true,
         modules: ['node_modules'],
         extensions: ['.js', '.less'],
         fallback: {
