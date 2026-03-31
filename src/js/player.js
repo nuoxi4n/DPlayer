@@ -585,6 +585,12 @@ class DPlayer {
 
         this.volume(this.user.get('volume'), true, true);
 
+        if (this.options.autoplay && !this.switchingQuality) {
+            this.video.muted = true;
+            this.bar.set('volume', 0, 'width');
+            this.template.volumeIcon.innerHTML = Icons.volumeOff;
+        }
+
         if (this.options.subtitle) {
             // init old single subtitle function(sub show and style)
             this.subtitle = new Subtitle(this.template.subtitle, this.video, this.options.subtitle, this.events);
