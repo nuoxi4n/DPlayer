@@ -585,7 +585,7 @@ class DPlayer {
 
         this.volume(this.user.get('volume'), true, true);
 
-        if (this.options.autoplay) {
+        if (this.options.autoplay && !this.switchingQuality) {
             this.video.muted = true;
             this.bar.set('volume', 0, 'width');
             this.template.volumeIcon.innerHTML = Icons.volumeOff;
