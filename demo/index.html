@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <title>DPlayer Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css">
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/github-markdown-css/5.8.1/github-markdown.min.css">
     <link rel="stylesheet" href="demo.css">
-    <script src="https://cdn.jsdelivr.net/npm/flv.js/dist/flv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js/dist/hls.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dashjs/dist/dash.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/flv.js/1.6.2/flv.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/hls.js/1.6.9/hls.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/dashjs/5.0.3/modern/umd/dash.all.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/webtorrent/1.9.7/webtorrent.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pearplayer"></script>
-    <script src="DPlayer.js"></script>
+    <script src="https://api.nxvav.cn/assets/lib/DPlayer.min.js"></script>
 </head>
 
 <body class="markdown-body">
@@ -35,10 +35,19 @@
         <button class="btn" onclick="dp2.seek(120)">seek</button>
         <button class="btn" onclick="dp2.volume(0.2)">volume</button>
         <button class="btn" onclick="dp2.toggle()">toggle</button>
+        <button class="btn" onclick="toggleDp2Muted()">toggle muted</button>
+        <button class="btn" onclick="dp2.speed(1)">speed 1x</button>
+        <button class="btn" onclick="dp2.speed(1.25)">speed 1.25x</button>
+        <button class="btn" onclick="dp2.infoPanel.triggle()">info panel</button>
         <button class="btn" onclick="dp2.destroy()">destroy</button>
         <button class="btn" onclick="dp2.danmaku.hide()">danmaku.hide</button>
         <button class="btn" onclick="dp2.danmaku.show()">danmaku.show</button>
         <div id="dplayer2"></div>
+        <div class="debug-panel">
+            <div class="debug-panel-title">Debug snapshot</div>
+            <div class="debug-panel-desc">实时查看 autoplay、muted、loop、volume 和播放状态。</div>
+            <dl id="debug-state" class="debug-state"></dl>
+        </div>
         <div id="events"></div>
     </div>
 

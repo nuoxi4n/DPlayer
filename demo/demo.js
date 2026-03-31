@@ -11,6 +11,72 @@ function animate() {
 }
 requestAnimationFrame(animate);
 
+const debugStateEle = document.getElementById('debug-state');
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function formatNumber(value) {
+    if (typeof value !== 'number' || !Number.isFinite(value)) {
+        return String(value);
+    }
+
+    return Number.isInteger(value) ? String(value) : value.toFixed(2);
+}
+
+function formatDebugTime(value) {
+    if (typeof value !== 'number' || !Number.isFinite(value)) {
+        return String(value);
+    }
+
+    return `${value.toFixed(2)}s`;
+}
+
+function renderDp2DebugState() {
+    if (!window.dp2 || !debugStateEle) {
+        return;
+    }
+
+    const video = dp2.video;
+    const fields = [
+        ['autoplay (options)', dp2.options.autoplay],
+        ['autoplay (video)', video.autoplay],
+        ['muted (options)', dp2.options.muted],
+        ['muted (video)', video.muted],
+        ['loop (options)', dp2.options.loop],
+        ['paused', video.paused],
+        ['player.paused', dp2.paused],
+        ['current time', formatDebugTime(video.currentTime)],
+        ['duration', formatDebugTime(video.duration)],
+        ['volume', formatNumber(video.volume)],
+        ['playback rate', formatNumber(video.playbackRate)],
+        ['ready state', video.readyState],
+        ['network state', video.networkState],
+        ['resolution', `${video.videoWidth || '-'} x ${video.videoHeight || '-'}`],
+        ['video type', dp2.options.video.type],
+        ['danmaku enabled', !!dp2.options.danmaku],
+    ];
+
+    debugStateEle.innerHTML = fields
+        .map(([label, value]) => `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`)
+        .join('');
+}
+
+function toggleDp2Muted() {
+    if (!window.dp2) {
+        return;
+    }
+
+    dp2.template.volumeButtonIcon.click();
+    renderDp2DebugState();
+}
+
 initPlayers();
 handleEvent();
 
@@ -136,6 +202,30 @@ function initPlayers() {
             }
         ]
     });
+
+    const debugEvents = [
+        'loadedmetadata',
+        'play',
+        'playing',
+        'pause',
+        'timeupdate',
+        'volumechange',
+        'ratechange',
+        'seeked',
+        'waiting',
+        'ended',
+        'resize',
+        'fullscreen',
+        'fullscreen_cancel',
+        'webfullscreen',
+        'webfullscreen_cancel',
+    ];
+
+    debugEvents.forEach((eventName) => {
+        dp2.on(eventName, renderDp2DebugState);
+    });
+
+    renderDp2DebugState();
 
     const events = [
         'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
@@ -288,4 +378,6 @@ function switchDPlayer() {
             user: 'DIYgod'
         });
     }
+
+    renderDp2DebugState();
 }
