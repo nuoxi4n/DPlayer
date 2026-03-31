@@ -592,7 +592,7 @@ class DPlayer {
                 this.bar.set('volume', 0, 'width');
                 this.template.volumeIcon.innerHTML = Icons.volumeOff;
             }
-        } else if (this.options.muted || this.options.autoplay) {
+        } else if (this.options.muted) {
             this.video.muted = true;
             this.bar.set('volume', 0, 'width');
             this.template.volumeIcon.innerHTML = Icons.volumeOff;
