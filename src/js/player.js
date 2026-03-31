@@ -382,7 +382,7 @@ class DPlayer {
                 this.type = 'normal';
             }
 
-            const src = this.quality.url; // 真实的视频 url, 用于切换清晰度时销毁实例
+            const src = this.quality && this.quality.url; // 真实的视频 url, 用于切换清晰度时销毁实例
             switch (this.type) {
                 // https://github.com/video-dev/hls.js
                 case 'hls':
