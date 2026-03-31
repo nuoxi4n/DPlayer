@@ -59,7 +59,7 @@ export default (options) => {
         },
         {
             key: 'about-author',
-            link: 'https://api.nxvav.cn',
+            link: 'https://github.com/nuoxi4n',
         },
         {
             text: `DPlayer v${DPLAYER_VERSION}`,
