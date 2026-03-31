@@ -16,6 +16,7 @@ export default (options) => {
         hotkey: true,
         preload: 'metadata',
         volume: 0.7,
+        muted: false,
         playbackSpeed: [0.5, 0.75, 1, 1.25, 1.5, 2],
         apiBackend: defaultApiBackend,
         video: {},
