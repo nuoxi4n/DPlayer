@@ -12,7 +12,7 @@
     <script src="https://cdnjs.loli.net/ajax/libs/dashjs/5.0.3/modern/umd/dash.all.min.js"></script>
     <script src="https://cdnjs.loli.net/ajax/libs/webtorrent/1.9.7/webtorrent.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pearplayer"></script>
-    <script src="https://api.nxvav.cn/assets/lib/DPlayer.min.js"></script>
+    <script src="../dist/DPlayer.min.js"></script>
 </head>
 
 <body class="markdown-body">
@@ -36,16 +36,35 @@
         <button class="btn" onclick="dp2.volume(0.2)">volume</button>
         <button class="btn" onclick="dp2.toggle()">toggle</button>
         <button class="btn" onclick="toggleDp2Muted()">toggle muted</button>
+        <button class="btn" onclick="toggleDp2Loop()">toggle loop</button>
         <button class="btn" onclick="dp2.speed(1)">speed 1x</button>
         <button class="btn" onclick="dp2.speed(1.25)">speed 1.25x</button>
         <button class="btn" onclick="dp2.infoPanel.triggle()">info panel</button>
         <button class="btn" onclick="dp2.destroy()">destroy</button>
         <button class="btn" onclick="dp2.danmaku.hide()">danmaku.hide</button>
         <button class="btn" onclick="dp2.danmaku.show()">danmaku.show</button>
+        <div class="debug-toolbar">
+            <label class="debug-control" for="dp2-volume">
+                <span>Volume</span>
+                <input id="dp2-volume" type="range" min="0" max="1" step="0.01" value="0.2">
+            </label>
+            <label class="debug-control" for="dp2-rate">
+                <span>Playback rate</span>
+                <select id="dp2-rate">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.25">1.25x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </label>
+            <div id="debug-badges" class="debug-badges"></div>
+        </div>
         <div id="dplayer2"></div>
         <div class="debug-panel">
             <div class="debug-panel-title">Debug snapshot</div>
-            <div class="debug-panel-desc">实时查看 autoplay、muted、loop、volume 和播放状态。</div>
+            <div class="debug-panel-desc">实时查看 autoplay、muted、loop、volume、playbackRate 和媒体状态。</div>
             <dl id="debug-state" class="debug-state"></dl>
         </div>
         <div id="events"></div>
@@ -53,7 +72,8 @@
 
     <h2 id="quality-switching">Quality switching</h2>
     <div class="example">
-        <button class="btn" onclick="dp3.switchQuality(1)">Switch quality</button>
+        <button class="btn" onclick="dp3.switchQuality(0)">Switch quality HD</button>
+        <button class="btn" onclick="dp3.switchQuality(1)">Switch quality SD</button>
         <div id="dplayer3"></div>
     </div>
 
