@@ -585,7 +585,14 @@ class DPlayer {
 
         this.volume(this.user.get('volume'), true, true);
 
-        if ((this.options.muted || this.options.autoplay) && !this.switchingQuality) {
+        if (this.switchingQuality) {
+            // Preserve muted state from the previous video when switching quality
+            if (this.prevVideo && this.prevVideo.muted) {
+                this.video.muted = true;
+                this.bar.set('volume', 0, 'width');
+                this.template.volumeIcon.innerHTML = Icons.volumeOff;
+            }
+        } else if (this.options.muted || this.options.autoplay) {
             this.video.muted = true;
             this.bar.set('volume', 0, 'width');
             this.template.volumeIcon.innerHTML = Icons.volumeOff;
